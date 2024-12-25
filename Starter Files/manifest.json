@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "AZ Assistant",
+  "version": "0.1",
+  "author": "Priya Singh",
+  "description": "A Chrome Extension that lets you use ai for AZ problem.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://maang.in/problems/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources" : [
+    {
+      "resources": [
+        "assets/AZLogo.webp",
+        "assets/bookmark.png",
+        "assets/play.png",
+        "assets/delete.png"
+      ],
+      "matches" : ["<all_urls>"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/ext-icon.png",
+      "24": "assets/ext-icon.png",
+      "32": "assets/ext-icon.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "AZ Assistant"
+  }
+}
