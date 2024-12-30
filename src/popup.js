@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 url: 'https://maang.in',
                 name: 'groq_api_key',
                 value: apiKey,
-                domain: '.maang.in',
+                domain: 'maang.in',
                 path: '/',
                 secure: true,
                 httpOnly: false,
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             showStatus('API key saved successfully!', true);
-
+            
             // Notify any open tabs
             chrome.tabs.query({url: 'https://maang.in/*'}, function(tabs) {
                 tabs.forEach(tab => {
