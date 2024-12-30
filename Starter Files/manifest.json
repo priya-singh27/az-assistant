@@ -5,14 +5,20 @@
   "author": "Priya Singh",
   "description": "A Chrome Extension that lets you use ai for AZ problem.",
   "permissions": [
+    "tabs",
     "activeTab",
     "storage",
-    "scripting"
+    "scripting",
+    "cookies"
   ],
+  "host_permissions": [
+    "https://*.maang.in/*"
+  ],
+
   "content_scripts": [
     {
       "matches": [
-        "https://maang.in/problems/*"
+        "https://maang.in/*"
       ],
       "js": [
         "content.js"
@@ -22,13 +28,14 @@
   "background": {
     "service_worker": "background.js"
   },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+
   "web_accessible_resources" : [
     {
       "resources": [
-        "assets/AZLogo.webp",
-        "assets/bookmark.png",
-        "assets/play.png",
-        "assets/delete.png"
+        "assets/AZLogo.webp"
       ],
       "matches" : ["<all_urls>"]
     }
