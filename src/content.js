@@ -8,6 +8,22 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 addAIHelpButton();
 
+const COLORS = {
+    "primary-button": "#2563eb",
+    "primary-button-hover": "#1d4ed8",
+    "secondary-text": "#64748b",
+    "primary-text": "#1e293b",
+    "border-light": "#e2e8f0",
+    "border-medium": "#cbd5e1",
+    "border-dark": "#94a3b8",
+    "hover-bg": "#f1f5f9",
+    "shadow-color": "rgba(15, 23, 42, 0.1)",
+    "user-message-bg": "#2563eb",
+    "user-message-text": "#ffffff",
+    "ai-message-bg": "#ffffff",
+    "ai-message-text": "#1e293b"
+};
+
 //* Responsible for creating and adding a help button
 function addAIHelpButton() {
     if (document.getElementById("ai-help-button")) {
