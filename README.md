@@ -28,3 +28,9 @@ This is a Chrome extension for the maang.in website. If you need help with your 
 7. Get an api key from "https://console.groq.com/keys"
 8. Click on the extension icon and paste you groq_api_key there.
 9. Now, when you are solving any problem, you will see a button that says 'Assistant.' Don't forget to try it!
+
+## Video
+
+https://github.com/user-attachments/assets/a701159e-68a1-4227-a01e-c96210981d46
+
+
