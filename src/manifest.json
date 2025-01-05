@@ -20,6 +20,7 @@
       "matches": [
         "https://maang.in/*"
       ],
+      "css":["style.css"],
       "js": [
         "content.js"
       ]

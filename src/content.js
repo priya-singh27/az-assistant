@@ -8,23 +8,6 @@ observer.observe(document.body, { childList: true, subtree: true });
 
 addAIHelpButton();
 
-const COLORS = {
-    "primary-button": "#2563eb",
-    "primary-button-hover": "#1d4ed8",
-    "secondary-text": "#64748b",
-    "primary-text": "#1e293b",
-    "border-light": "#e2e8f0",
-    "border-medium": "#cbd5e1",
-    "border-dark": "#94a3b8",
-    "hover-bg": "#f1f5f9",
-    "shadow-color": "rgba(15, 23, 42, 0.1)",
-    "user-message-bg": "#2563eb",
-    "user-message-text": "#ffffff",
-    "ai-message-bg": "#ffffff",
-    "ai-message-text": "#1e293b"
-};
-
-//* Responsible for creating and adding a help button
 function addAIHelpButton() {
     if (document.getElementById("ai-help-button")) {
         return;
@@ -33,25 +16,11 @@ function addAIHelpButton() {
     aiHelpButton.id = "ai-help-button";
     aiHelpButton.type = "button";
     aiHelpButton.className = "ant-btn css-19gw05y ant-btn-default Button_gradient_light_button__ZDAR_ coding_ask_doubt_button__FjwXJ gap-1 py-2 px-3";
-    aiHelpButton.style.display = "flex";
-    aiHelpButton.style.alignItems = "center";
-    aiHelpButton.style.height = "34px";
-    aiHelpButton.style.width = "auto";
-
-    aiHelpButton.addEventListener('click', () => {
-        aiHelpButton.style.animation = "buttonClickEffect 0.5s ease-in-out 0.2s 3 alternate";
-        setTimeout(() => {
-            aiHelpButton.style.animation = ""; 
-        }, 300); 
-    });
     
     //Adding image to the buttom
     const aiImage = document.createElement('img');
     aiImage.src = azLogo;
     aiImage.alt = "Assistant Icon";
-    aiImage.style.width = "18px";
-    aiImage.style.height = "18px";
-    aiImage.className = "me-1";
 
     //Adding text "Assistant" to the button
     const textSpan = document.createElement('span');
@@ -92,187 +61,49 @@ function createDialog(codeText) {
 
     const overlay = document.createElement('div');
     overlay.id = 'ai-help-overlay';
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(15, 23, 42, 0.8);
-        backdrop-filter: blur(12px);
-        z-index: 10000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 24px;
-    `;
 
     const dialog = document.createElement('div');
     dialog.id = 'ai-help-dialog';
-    dialog.style.cssText = `
-        width: 90vw;
-        max-width: 1200px;
-        height: 85vh;
-        max-height: 800px;
-        gap: 24px;
-        padding: 24px;
-        background: #ffffff;
-        border-radius: 24px;
-        box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
-        display: flex;
-        flex-direction: column;
-    `;
 
     const header = document.createElement('div');
-    header.style.cssText = `
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #e2e8f0;
-        background: #ffffff;
-        width: 100%;
-    `;
+    header.className = 'dialog-header';
 
     const title = document.createElement('h2');
-    title.style.cssText = `
-        color: #1e293b;
-        font-size: 24px;
-        font-weight: 700;
-        margin: 0;
-        letter-spacing: -0.5px;
-    `;
+    title.className = 'dialog-title';
     title.textContent = 'AI Assistant';
 
     const closeButton = createButton('×', 'icon');
-    closeButton.style.cssText += `
-        font-size: 28px;
-        padding: 8px 16px;
-        border-radius: 12px;
-        font-weight: 300;
-    `;
-
+    
     const contentContainer = document.createElement('div');
-    contentContainer.style.cssText = `
-        display: flex;
-        gap: 24px;
-        flex: 1;
-        overflow: hidden;
-        height: calc(100% - 77px);
-    `;
+    contentContainer.className = 'content-container';
 
-    // Code section (unchanged)
     const codeSection = document.createElement('div');
-    codeSection.style.cssText = `
-        flex: 0 0 45%;
-        background: #1e293b;
-        border-radius: 20px;
-        border: 1px solid #334155;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.1);
-    `;
+    codeSection.className = 'code-section';
 
     const codeHeader = document.createElement('div');
-    codeHeader.style.cssText = `
-        padding: 16px 20px;
-        border-bottom: 1px solid #334155;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        background: #0f172a;
-    `;
+    codeHeader.className = 'code-header';
 
     const codeTitle = document.createElement('span');
+    codeTitle.className = 'code-title';
     codeTitle.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg> Code';
-    codeTitle.style.cssText = `
-        color: #e2e8f0;
-        font-weight: 600;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    `;
-
+    
     const codeWrapper = document.createElement('div');
-    codeWrapper.style.cssText = `
-        display: flex;
-        flex: 1;
-        overflow: hidden;
-        height: calc(100% - 53px);
-        position: relative;
-    `;
-
+    codeWrapper.className = 'code-wrapper';
+    
     const lineNumbers = document.createElement('div');
-    lineNumbers.style.cssText = `
-        padding: 16px 12px;
-        background: #0f172a;
-        border-right: 1px solid #334155;
-        color: #64748b;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 13px;
-        line-height: 1.5;
-        text-align: right;
-        user-select: none;
-        min-width: 45px;
-        overflow-y: scroll;
-        position: sticky;
-        left: 0;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    `;
+    lineNumbers.className = 'line-numbers';
 
     const codeContent = document.createElement('div');
-    codeContent.style.cssText = `
-        flex: 1;
-        padding: 16px 20px;
-        overflow: auto;
-        white-space: pre;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 13px;
-        line-height: 1.5;
-        color: #e2e8f0;
-        background: #1e293b;
-    `;
+    codeContent.className = 'code-content';
 
-    // Chat section (improved)
     const chatSection = document.createElement('div');
-    chatSection.style.cssText = `
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        background: #f8fafc;
-        border-radius: 20px;
-        border: 1px solid #e2e8f0;
-        overflow: hidden;
-        height: 100%;
-        box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.1);
-        position: relative;
-    `;
+    chatSection.className = 'chat-section';
 
     const chatHeader = document.createElement('div');
-    chatHeader.style.cssText = `
-        padding: 16px 20px;
-        border-bottom: 1px solid #e2e8f0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #ffffff;
-        z-index: 2;
-    `;
+    chatHeader.className = 'chat-header';  
 
     const chatTitle = document.createElement('div');
-    chatTitle.style.cssText = `
-        color: #1e293b;
-        font-weight: 600;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    `;
+    chatTitle.className = 'chat-title';
 
     // Create SVG element properly
     const chatIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -294,82 +125,21 @@ function createDialog(codeText) {
     chatTitle.appendChild(chatTitleText);
 
     const clearButton = createButton('Clear Chat', 'secondary');
-    clearButton.style.cssText += `
-        font-size: 13px;
-        padding: 6px 12px;
-        height: 32px;
-    `;
+    clearButton.className = 'btn btn-secondary';
 
     const messagesContainer = document.createElement('div');
     messagesContainer.id = 'chat-messages';
-    messagesContainer.style.cssText = `
-        flex: 1;
-        overflow-y: auto;
-        padding: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        height: calc(100% - 153px);
-        background: #f8fafc;
-    `;
 
     const inputContainer = document.createElement('div');
-    inputContainer.style.cssText = `
-        position: sticky;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 16px 20px;
-        border-top: 1px solid #e2e8f0;
-        background: #ffffff;
-        display: flex;
-        gap: 12px;
-        align-items: flex-end;
-        z-index: 2;
-    `;
+    inputContainer.className = 'input-container';
 
     const textarea = document.createElement('textarea');
-    textarea.style.cssText = `
-        flex: 1;
-        min-height: 44px;
-        max-height: 200px;
-        padding: 12px 16px;
-        border-radius: 12px;
-        background: #f1f5f9;
-        border: 1px solid #cbd5e1;
-        color: #1e293b;
-        font-family: inherit;
-        font-size: 14px;
-        resize: none;
-        transition: all 0.2s ease;
-        line-height: 1.5;
-        overflow-y: hidden;
-        display: block;
-        width: 100%;
-        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
-        outline: none;
-    `;
+    textarea.className = 'chat-textarea';
     textarea.placeholder = 'Type your message... (Ctrl/Cmd + Enter to send)';
 
     // Create send button with proper SVG
     const sendButton = document.createElement('button');
-    sendButton.style.cssText = `
-        background: #4F46E5;
-        color: white;
-        border: none;
-        border-radius: 12px;
-        padding: 12px 20px;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        height: 44px;
-        min-width: 100px;
-    `;
+    sendButton.className = 'btn btn-primary';
 
     const sendIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     sendIcon.setAttribute("width", "16");
@@ -492,64 +262,26 @@ function createDialog(codeText) {
 function createButton(text, type = 'default') {
     const button = document.createElement('button');
     button.textContent = text;
-    
-    const baseStyles = `
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 44px;
-    `;
+    button.className = `btn btn-${type}`;
 
-    switch(type) {
-        case 'primary':
-            button.style.cssText = baseStyles + `
-                background: ${COLORS["primary-button"]};
-                color: white;
-                border: none;
-                min-width: 100px;
-            `;
-            button.onmouseover = () => button.style.background = COLORS["primary-button-hover"];
-            button.onmouseout = () => button.style.background = COLORS["primary-button"];
-            break;
-        case 'secondary':
-            button.style.cssText = baseStyles + `
-                background: transparent;
-                color: ${COLORS["secondary-text"]};
-                border: 1px solid ${COLORS["border-medium"]};
-            `;
-            button.onmouseover = () => {
-                button.style.background = COLORS["hover-bg"];
-                button.style.borderColor = COLORS["border-dark"];
-            };
-            button.onmouseout = () => {
-                button.style.background = 'transparent';
-                button.style.borderColor = COLORS["border-medium"];
-            };
-            break;
-        case 'icon':
-            button.style.cssText = baseStyles + `
-                background: transparent;
-                color: ${COLORS["secondary-text"]};
-                border: none;
-                padding: 8px;
-                height: auto;
-                min-width: auto;
-            `;
-            button.onmouseover = () => {
-                button.style.background = COLORS["hover-bg"];
-                button.style.color = COLORS["primary-text"];
-            };
-            button.onmouseout = () => {
-                button.style.background = 'transparent';
-                button.style.color = COLORS["secondary-text"];
-            };
-            break;
+    if (text === 'Send') {
+        const sendIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        sendIcon.setAttribute("width", "16");
+        sendIcon.setAttribute("height", "16");
+        sendIcon.setAttribute("viewBox", "0 0 24 24");
+        sendIcon.setAttribute("fill", "none");
+        sendIcon.setAttribute("stroke", "currentColor");
+        sendIcon.setAttribute("stroke-width", "2");
+
+        const sendIconPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        sendIconPath.setAttribute("d", "M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z");
+        sendIcon.appendChild(sendIconPath);
+
+        button.innerHTML = '';
+        button.appendChild(sendIcon);
+        const textSpan = document.createElement('span');
+        textSpan.textContent = text;
+        button.appendChild(textSpan);
     }
     
     return button;
@@ -558,33 +290,10 @@ function createButton(text, type = 'default') {
 //*Creates a chat message bubble with different styles for user and assistant messages
 function createMessageElement({ role, content, timestamp }) {
     const messageDiv = document.createElement('div');
-    messageDiv.style.cssText = `
-        padding: 16px;
-        border-radius: 16px;
-        max-width: 85%;
-        transition: all 0.2s ease;
-        box-shadow: 0 2px 4px ${COLORS["shadow-color"]};
-        ${role === 'user' ?
-            `margin-left: auto;
-            background: ${COLORS["user-message-bg"]};
-            color: ${COLORS["user-message-text"]};
-            border-bottom-right-radius: 4px;` :
-            `margin-right: auto;
-            background: ${COLORS["ai-message-bg"]};
-            color: ${COLORS["ai-message-text"]};
-            border-bottom-left-radius: 4px;`
-        }
-    `;
+    messageDiv.className = `message message-${role}`;
 
     const contentDiv = document.createElement('div');
-    contentDiv.style.cssText = `
-        margin-bottom: 6px;
-        line-height: 1.6;
-        font-size: 14px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        letter-spacing: -0.1px;
-    `;
+    contentDiv.className = 'message-content';
 
     if (role === 'user') {
         // For user messages, preserve line breaks but escape HTML
@@ -601,26 +310,8 @@ function createMessageElement({ role, content, timestamp }) {
     }
 
     const timestampDiv = document.createElement('div');
-    timestampDiv.style.cssText = `
-        font-size: 11px;
-        opacity: 0.8;
-        font-weight: 500;
-        ${role === 'user' ? 
-            'color: rgba(255, 255, 255, 0.9);' : 
-            `color: ${COLORS["secondary-text"]};`
-        }
-    `;
+    timestampDiv.className = 'message-timestamp';
     timestampDiv.textContent = new Date(timestamp).toLocaleTimeString();
-
-    // Add hover effect
-    messageDiv.onmouseover = () => {
-        messageDiv.style.transform = 'translateY(-1px)';
-        messageDiv.style.boxShadow = '0 4px 6px ${COLORS["shadow-color"]}';
-    };
-    messageDiv.onmouseout = () => {
-        messageDiv.style.transform = 'translateY(0)';
-        messageDiv.style.boxShadow = '0 2px 4px ${COLORS["shadow-color"]}';
-    };
 
     messageDiv.appendChild(contentDiv);
     messageDiv.appendChild(timestampDiv);
@@ -659,7 +350,7 @@ async function askNewDoubtHandler(e) {
         existingMessages.forEach(message => {
             const messageElement = dialogElements.createMessageElement({
                 role: message.role,
-                content: message.content, // Pass raw content, let createMessageElement handle formatting
+                content: message.content,
                 timestamp: message.timestamp
             });
             dialogElements.messagesContainer.appendChild(messageElement);
