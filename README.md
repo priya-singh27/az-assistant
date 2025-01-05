@@ -1,6 +1,9 @@
 # AZ Assistant
 This is a Chrome extension for the maang.in website. If you need help with your problems, this AI assistant will answer your queries related to those issues and will act as a mentor to guide you in the right direction.
 
+## Demo Video
+https://github.com/user-attachments/assets/5ad317fd-1a2b-4006-a816-1a13c985cceb
+
 ## Features
 - Extracts code you have written from the code editor.
 - Interactive chat interface.
@@ -28,12 +31,3 @@ This is a Chrome extension for the maang.in website. If you need help with your 
 7. Get an api key from "https://console.groq.com/keys"
 8. Click on the extension icon and paste you groq_api_key there.
 9. Now, when you are solving any problem, you will see a button that says 'Assistant.' Don't forget to try it!
-
-## Demo Video
-https://github.com/user-attachments/assets/5ad317fd-1a2b-4006-a816-1a13c985cceb
-
-
-
-
-
-
